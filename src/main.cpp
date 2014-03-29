@@ -24,13 +24,17 @@
 
 /* Includes */
 #include "stm32f4xx.h"
-#include "carme_io1.h"
 #include "application/TestClass.hpp"
 
 /* Private macro */
+
 /* Private variables */
+
+
 /* Private function prototypes */
+
 /* Private functions */
+
 
 /**
 **===========================================================================
@@ -41,7 +45,7 @@
 */
 int main(void)
 {
-  int i = 0;
+  int i = 1;
 
   /**
   *  IMPORTANT NOTE!
@@ -55,7 +59,6 @@ int main(void)
 
   /* TODO - Add your application code here */
 
-  CARME_IO1_Init();
   TestClass test;
 
   /* Infinite loop */
