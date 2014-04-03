@@ -13,14 +13,14 @@
 #include "StateMenu.hpp"
 
 /**
- * \brief	Constructor.
+ * \brief	Constructor of the menu state.
  */
 StateMenu::StateMenu(App4GewinnT4 *owner) : State(owner) {
 	stateName = "State: Menu";
 }
 
 /**
- * \brief	Deconstructor.
+ * \brief	Destructor of the menu state.
  */
 StateMenu::~StateMenu() {
 

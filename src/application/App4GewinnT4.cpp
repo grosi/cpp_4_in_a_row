@@ -8,20 +8,29 @@
 
 #include "App4GewinnT4.hpp"
 #include "State.hpp"
+#include "StateMenu.hpp"
 
 /**
  * \brief	Constructor.
  * \param	hw_timer Pointer to the single hardware timer.
  */
-App4GewinnT4::App4GewinnT4(Timer *hw_timer) : objTimer(hw_timer) {
+App4GewinnT4::App4GewinnT4() {
+	//Timer *objTimer;
+
 	/* Makes the first state */
-	//currentState = new StateMenu(this);
+	currentState = new StateMenu(this);
+
+	/* Add the communication and the hardware timer listener */
+	//objTimer =
 }
 
 /**
  * \brief	Deconstructor.
  */
 App4GewinnT4::~App4GewinnT4() {
+	/* Remove the communication and the hardware timer listener */
+
+
 	/* Deletes the current state */
 	delete currentState;
 }
@@ -41,8 +50,12 @@ State* App4GewinnT4::getCurrentState(void) {
 void App4GewinnT4::nextState(State *next_state) {
 	/* First delete the old state */
 	delete currentState;
+
 	/* Set the new state */
 	currentState = next_state;
+
+	/* Repaint the Screen */
+	currentState->paintFullScreen();
 }
 
 /**

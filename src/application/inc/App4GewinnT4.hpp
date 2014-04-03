@@ -20,13 +20,12 @@ class Game;
  */
 class App4GewinnT4 {
 	private:
-		Timer *objTimer;
 		State *currentState;
 		Game *game;
 
 	public:
 		/* Constructor and deconstructor */
-		App4GewinnT4(Timer *hw_timer);
+		App4GewinnT4();
 		~App4GewinnT4();
 
 		/* Public methods */
