@@ -22,10 +22,9 @@
  */
 class StateMenu : public State {
 	private:
-		//String stateName;
 
 	public:
-		/* Constructor and deconstructor */
+		/* Constructor and destructor */
 		StateMenu(App4GewinnT4 *owner);
 		~StateMenu();
 

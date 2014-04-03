@@ -15,6 +15,7 @@
 
 #include <stdint.h>
 #include <string>
+
 #include "App4GewinnT4.hpp"
 
 /**
@@ -22,10 +23,8 @@
  * \brief	This is the interface of all states used in the application.
  */
 class State {
-	private:
-		App4GewinnT4 *context;
-
 	protected:
+		App4GewinnT4 *context;
 		std::string stateName;
 
 	public:

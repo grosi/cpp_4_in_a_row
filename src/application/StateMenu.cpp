@@ -12,6 +12,12 @@
 #include "State.hpp"
 #include "StateMenu.hpp"
 
+#include "StateGame.hpp"
+#include "StateCommError.hpp"
+
+#include "Game.hpp"
+#include "Player.hpp"
+
 /**
  * \brief	Constructor of the menu state.
  */
@@ -31,7 +37,8 @@ StateMenu::~StateMenu() {
  * 			This event comes from the communication.
  */
 void StateMenu::commConnect(void) {
-
+	/* Repaint hole screen */
+	this->paintFullScreen();
 }
 
 /**
@@ -39,7 +46,8 @@ void StateMenu::commConnect(void) {
  * 			This event comes from the communication.
  */
 void StateMenu::commDisconnect(void) {
-
+	/* Repaint hole screen */
+	this->paintFullScreen();
 }
 
 /**
@@ -47,7 +55,8 @@ void StateMenu::commDisconnect(void) {
  * 			This event comes from the communication.
  */
 void StateMenu::commGameReq(void) {
-
+	/* Repaint hole screen */
+	this->paintFullScreen();
 }
 
 /**
@@ -55,7 +64,18 @@ void StateMenu::commGameReq(void) {
  * 			This event comes from the communication.
  */
 void StateMenu::commGameStart(void) {
+	Player *player1;
+	Player *player2;
 
+	/* Allocate the players */
+	/* Spieler 1 Remote (Timer), Spieler 2 ich */
+	//player1 = new Remote();
+
+	/* Starts an new game. */
+	//currentGame = new Game(context, player1, player2);
+
+	/* Change to the game state */
+	context->nextState(new StateGame(context));
 }
 
 /**
@@ -81,7 +101,8 @@ void StateMenu::commStonePlace(uint8_t col) {
  * \brief	An intern communication failure occurs.
  */
 void StateMenu::commError(void) {
-
+	/* Change to the game state */
+	context->nextState(new StateCommError(context));
 }
 
 /**

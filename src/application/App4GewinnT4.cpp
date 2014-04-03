@@ -7,29 +7,39 @@
  */
 
 #include "App4GewinnT4.hpp"
-#include "State.hpp"
 #include "StateMenu.hpp"
+
+#include "Timer.h"
+#include "Hardware.h"
+#include "Communication.h"
 
 /**
  * \brief	Constructor.
  * \param	hw_timer Pointer to the single hardware timer.
  */
 App4GewinnT4::App4GewinnT4() {
-	//Timer *objTimer;
+	/* Add the communication and the hardware timer listener */
+	objTimer = Timer::getInstance();
+
+	/* Hardware */
+	objHardware = Hardware::getInstance();
+	objTimer->addActionListener();
+
+	/* UART communication */
+	objCommunication = Communication::getInstance();
+	objTimer->addActionListener();
 
 	/* Makes the first state */
 	currentState = new StateMenu(this);
-
-	/* Add the communication and the hardware timer listener */
-	//objTimer =
 }
 
 /**
- * \brief	Deconstructor.
+ * \brief	Destructor.
  */
 App4GewinnT4::~App4GewinnT4() {
 	/* Remove the communication and the hardware timer listener */
-
+	objTimer->removeActionListener();
+	objTimer->removeActionListener();
 
 	/* Deletes the current state */
 	delete currentState;
@@ -63,7 +73,13 @@ void App4GewinnT4::nextState(State *next_state) {
  * \todo	Implement.
  */
 void App4GewinnT4::gameCreate(void) {
-
+//	Player *player1;
+//	Player *player2;
+//
+//	/* Allocate the players */
+//
+//	/* Make a new game */
+//	game = new Game(player1, player2);
 }
 
 /**

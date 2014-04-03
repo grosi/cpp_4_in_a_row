@@ -16,7 +16,6 @@ private:
 	static Timer* singleInstance;
 public:
 	static Timer* getInstance(void);
-private:
 	static void interruptHandler(void);
 	void addActionListener(void);
 	void removeActionListener(void);

@@ -10,6 +10,8 @@
 #define APP4GEWINNT4_HPP_
 
 class Timer;
+class Hardware;
+class Communication;
 class State;
 class Game;
 
@@ -20,8 +22,13 @@ class Game;
  */
 class App4GewinnT4 {
 	private:
+		Timer *objTimer;
+		Hardware *objHardware;
+		Communication *objCommunication;
+
+	private:
 		State *currentState;
-		Game *game;
+		Game *currentGame;
 
 	public:
 		/* Constructor and deconstructor */
