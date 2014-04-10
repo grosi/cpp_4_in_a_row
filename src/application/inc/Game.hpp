@@ -11,10 +11,30 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
+
 class Game {
+private:
+	App4GewinnT4 app;
+
+	Player** current_player;
+	Player* player_1;
+	Player* player_2;
+	int roundCtr;
+
 public:
-	Game();
+	Game(Player* player_1, Player* player_2 );
 	virtual ~Game();
+
+	Player* getCurrentPlayer(void);
+	void stonePlace(int, int);
+	void newGameRound(void);
+	GameField getCopyOfGameField(void);
+	void drawCursor(int);
+	void drawResultScreen(Player**, Stone winner_row[4]);
+
+
+
+
 };
 
 #endif /* GAME_HPP_ */

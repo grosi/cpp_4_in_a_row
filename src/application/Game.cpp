@@ -9,15 +9,39 @@
  * @{
  */
 
+#include "Player.hpp"
 #include "inc/Game.hpp"
 
-Game::Game() {
-	// TODO Auto-generated constructor stub
+Game::Game(App4GewinnT4 app, Player* player_1, Player* player_2) {
+	this->app = app;
+	this->player_1 = player_1;
+	this->player_2 = player_2;
+	current_player = &player_1;
 
 }
 
 Game::~Game() {
-	// TODO Auto-generated destructor stub
+
+
+}
+
+/**
+ * \fn		getCurrentPlayer
+ * \brief	give back a reference to the current player
+ *
+ * \return 	reference to current player
+ */
+Player* Game::getCurrentPlayer() {
+	return *current_player;
+}
+
+
+/**
+ * \fn		newGameRound
+ * \brief	draw gamefield new request
+ */
+void Game::newGameRound() {
+
 }
 
 /**
