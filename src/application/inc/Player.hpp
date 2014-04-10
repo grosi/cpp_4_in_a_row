@@ -19,9 +19,10 @@ class Player {
 protected:
 	std::string name;
 	int gamesWinnerCtr;
+	Game* owner;
 
 public:
-	Player();
+	Player(Game* game);
 	virtual ~Player();
 
 	void eventHwBtnEnt();
