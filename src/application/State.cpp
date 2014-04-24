@@ -20,7 +20,7 @@ State::State(App4GewinnT4 *owner) : context(owner) {
 }
 
 /**
- * \brief	Deconstructor.
+ * \brief	Destructor.
  */
 State::~State() {
 

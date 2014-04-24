@@ -15,6 +15,9 @@
 #include "StateGame.hpp"
 #include "StateCommError.hpp"
 
+#include "Hardware.h"
+#include "Communication.h"
+
 #include "Game.hpp"
 #include "Player.hpp"
 
@@ -64,15 +67,8 @@ void StateMenu::commGameReq(void) {
  * 			This event comes from the communication.
  */
 void StateMenu::commGameStart(void) {
-	Player *player1;
-	Player *player2;
-
-	/* Allocate the players */
-	/* Spieler 1 Remote (Timer), Spieler 2 ich */
-	//player1 = new Remote();
-
 	/* Starts an new game. */
-	//currentGame = new Game(context, player1, player2);
+	context->gameCreate(PLAYER_SELF_REMOTE);
 
 	/* Change to the game state */
 	context->nextState(new StateGame(context));
@@ -81,10 +77,11 @@ void StateMenu::commGameStart(void) {
 /**
  * \brief	The remote player wants to break up a running game.
  * 			This event comes from the communication.
- * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateMenu::commGameEsc(void) {
-
+	/* Cancel a game request */
+	/* Repaint hole screen */
+	this->paintFullScreen();
 }
 
 /**
@@ -94,7 +91,7 @@ void StateMenu::commGameEsc(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateMenu::commStonePlace(uint8_t col) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -109,7 +106,39 @@ void StateMenu::commError(void) {
  * \brief	Rising edge of the enter button. This event comes from the hardware.
  */
 void StateMenu::hwBtnEntr(void) {
+	Hardware *obj_hardware;
+	Communication *obj_communication;
 
+	obj_hardware = Hardware::getInstance();
+	obj_communication = Communication::getInstance();
+
+	if (obj_hardware->getPortValue() >= 4) {
+		/* Cancel a open game request */
+		if (!obj_communication->getStateGame()) {
+			obj_communication->commTxGameEsc();
+		}
+		/* Singleplayer game */
+		context->gameCreate(PLAYER_SELF_BOT);
+		/* Change the state */
+		context->nextState(new StateGame(context));
+	}
+	else {
+		/* Multiplayer game */
+		if (obj_communication->getStateGame()) {
+			/* Send a game request */
+			obj_communication->commTxGameReq();
+			/* Repaint Screen */
+			this->paintFullScreen();
+		}
+		else {
+			/* Response the game request */
+			obj_communication->commTxGameStart();
+			/* Start multiplayer game */
+			context->gameCreate(PLAYER_SELF_REMOTE);
+			/* Change the state */
+			context->nextState(new StateGame(context));
+		}
+	}
 }
 
 /**
@@ -117,7 +146,7 @@ void StateMenu::hwBtnEntr(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateMenu::hwBtnEsc(void) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -125,7 +154,8 @@ void StateMenu::hwBtnEsc(void) {
  * \param	pot_value is the new value of the potentiometer.
  */
 void StateMenu::hwPot(uint32_t pot_value) {
-
+	/* Repaint hole screen for the options selector */
+	this->paintFullScreen();
 }
 
 /**
@@ -133,14 +163,26 @@ void StateMenu::hwPot(uint32_t pot_value) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateMenu::timerEvent(void) {
-
+	/* No implementation needed */
 }
 
 /**
  * \brief	The whole LCD Screen must be repainted.
  */
 void StateMenu::paintFullScreen(void) {
+	// Status Poti, Verbindung holen
+	// Bildschirm zeichnen
+	Hardware *obj_hardware;
+	Communication *obj_communication;
 
+	obj_hardware = Hardware::getInstance();
+	obj_communication = Communication::getInstance();
+
+	/* Clear screen */
+
+	/* Title */
+
+	/* Menu points */
 }
 
 /**

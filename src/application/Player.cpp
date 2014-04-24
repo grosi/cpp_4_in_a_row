@@ -11,7 +11,7 @@
 
 #include "inc/Player.hpp"
 
-Player::Player(Game* game) : owner(game) {
+Player::Player() {
 	// TODO Auto-generated constructor stub
 
 }

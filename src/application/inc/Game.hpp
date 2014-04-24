@@ -11,6 +11,16 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
+/**
+ * \typedef	playerLineUp_t
+ * \brief	All possible player line ups. It starts with the first player and ends with the second.
+ */
+typedef enum {
+	PLAYER_SELF_REMOTE,
+	PLAYER_REMOTE_SELF,
+	PLAYER_SELF_BOT,
+	PLAYER_BOT_SELF
+}playerLineUp_t;
 
 class Game {
 private:
@@ -22,7 +32,7 @@ private:
 	int roundCtr;
 
 public:
-	Game(Player* player_1, Player* player_2 );
+	Game(playerLineUp_t line_up);
 	virtual ~Game();
 
 	Player* getCurrentPlayer(void);

@@ -14,6 +14,9 @@ class Hardware;
 class Communication;
 class State;
 class Game;
+class Player;
+
+#include "Game.hpp"
 
 /**
  * \class	App4GewinnT4
@@ -30,16 +33,23 @@ class App4GewinnT4 {
 		State *currentState;
 		Game *currentGame;
 
+	private:
+		playerLineUp_t gameMode;
+
 	public:
-		/* Constructor and deconstructor */
+		/* Constructor and destructor */
 		App4GewinnT4();
 		~App4GewinnT4();
 
 		/* Public methods */
 		State* getCurrentState(void);
 		void nextState(State *next_state);
-		void gameCreate(void);
+		void gameCreate(playerLineUp_t line_up);
 		void gameDestroy(void);
+
+		bool getGameModeMultiplayer(void) { return (gameMode != PLAYER_SELF_BOT); }
+		Player* getCurrentPlayer(void);
+		void newGameRound(void);
 
 		/* Inherit methods */
 		void timerEvent(void);

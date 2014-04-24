@@ -13,9 +13,13 @@
 #include "Hardware.h"
 #include "Communication.h"
 
+#include "Player.hpp"
+#include "Self.hpp"
+#include "Bot.hpp"
+#include "Remote.hpp"
+
 /**
  * \brief	Constructor.
- * \param	hw_timer Pointer to the single hardware timer.
  */
 App4GewinnT4::App4GewinnT4() {
 	/* Add the communication and the hardware timer listener */
@@ -31,6 +35,9 @@ App4GewinnT4::App4GewinnT4() {
 
 	/* Makes the first state */
 	currentState = new StateMenu(this);
+
+	/* Draw the first screen */
+	currentState->paintFullScreen();
 }
 
 /**
@@ -70,24 +77,21 @@ void App4GewinnT4::nextState(State *next_state) {
 
 /**
  * \brief	Generate a new game.
- * \todo	Implement.
+ * \param[in]	line_up configures the two players.
  */
-void App4GewinnT4::gameCreate(void) {
-//	Player *player1;
-//	Player *player2;
-//
-//	/* Allocate the players */
-//
-//	/* Make a new game */
-//	game = new Game(player1, player2);
+void App4GewinnT4::gameCreate(playerLineUp_t line_up) {
+	/* Make a new game */
+	currentGame = new Game(line_up);
 }
 
 /**
  * \brief	Destroys an game.
- * \todo	Implementation.
  */
 void App4GewinnT4::gameDestroy(void) {
+	delete currentGame;
 
+	/// \todo testen ob noetig!
+	currentGame = NULL;
 }
 
 /**
@@ -95,4 +99,27 @@ void App4GewinnT4::gameDestroy(void) {
  */
 void App4GewinnT4::timerEvent(void) {
 	currentState->timerEvent();
+}
+
+/**
+ * \brief	Gets a pointer to the current player.
+ * \return	Pointer to the current Player. NULL if no game is running.
+ */
+Player* getCurrentPlayer(void) {
+	Player *current_player = NULL;
+
+	if (currentGame != NULL) {
+		current_player = currentGame->getCurrentPlayer();
+	}
+
+	return current_player;
+}
+
+/**
+ * \brief	Starts a new game round.
+ */
+void newGameRound(void) {
+	if (currentGame != NULL) {
+		currentGame->newGameRound();
+	}
 }

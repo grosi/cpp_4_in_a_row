@@ -32,7 +32,7 @@ StateCommError::~StateCommError() {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::commConnect(void) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -41,7 +41,7 @@ void StateCommError::commConnect(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::commDisconnect(void) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -50,7 +50,7 @@ void StateCommError::commDisconnect(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::commGameReq(void) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -59,7 +59,7 @@ void StateCommError::commGameReq(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::commGameStart(void) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -68,7 +68,7 @@ void StateCommError::commGameStart(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::commGameEsc(void) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -78,7 +78,7 @@ void StateCommError::commGameEsc(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::commStonePlace(uint8_t col) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -86,21 +86,23 @@ void StateCommError::commStonePlace(uint8_t col) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::commError(void) {
-
+	/* No implementation needed */
 }
 
 /**
  * \brief	Rising edge of the enter button. This event comes from the hardware.
  */
 void StateCommError::hwBtnEntr(void) {
-
+	/* Change to the menu state */
+	context->nextState(new StateMenu(context));
 }
 
 /**
  * \brief	Rising edge of the escape button. This event comes from the hardware.
  */
 void StateCommError::hwBtnEsc(void) {
-
+	/* Change to the menu state */
+	context->nextState(new StateMenu(context));
 }
 
 /**
@@ -109,7 +111,7 @@ void StateCommError::hwBtnEsc(void) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::hwPot(uint32_t pot_value) {
-
+	/* No implementation needed */
 }
 
 /**
@@ -117,7 +119,7 @@ void StateCommError::hwPot(uint32_t pot_value) {
  * \note	This state does not support this event. Therefore no implementation is needed.
  */
 void StateCommError::timerEvent(void) {
-
+	/* No implementation needed */
 }
 
 /**
