@@ -12,6 +12,8 @@
 #include "State.hpp"
 #include "StateCommError.hpp"
 
+#include "StateMenu.hpp"
+
 /**
  * \brief	Constructor.
  */

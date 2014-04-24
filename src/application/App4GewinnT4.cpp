@@ -105,7 +105,7 @@ void App4GewinnT4::timerEvent(void) {
  * \brief	Gets a pointer to the current player.
  * \return	Pointer to the current Player. NULL if no game is running.
  */
-Player* getCurrentPlayer(void) {
+Player* App4GewinnT4::getCurrentPlayer(void) {
 	Player *current_player = NULL;
 
 	if (currentGame != NULL) {
@@ -118,7 +118,7 @@ Player* getCurrentPlayer(void) {
 /**
  * \brief	Starts a new game round.
  */
-void newGameRound(void) {
+void App4GewinnT4::newGameRound(void) {
 	if (currentGame != NULL) {
 		currentGame->newGameRound();
 	}
