@@ -49,7 +49,7 @@ public:
 	void newGameRound(void);
 	GameField getCopyOfGameField(void);
 	void drawCursor(int);
-	void drawResultScreen(Player**, Stone winner_row[4]);
+	void drawResultScreen(void);
 
 };
 

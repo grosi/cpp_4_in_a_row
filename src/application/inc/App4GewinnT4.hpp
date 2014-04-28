@@ -45,6 +45,8 @@ class App4GewinnT4 {
 		State* getCurrentState(void);
 		void nextState(State *next_state);
 		void gameCreate(playerLineUp_t line_up);
+		void paintGameField(void);
+		void paintGameResult(void);
 		void gameDestroy(void);
 
 		bool getGameModeMultiplayer(void) { return (gameMode != PLAYER_SELF_BOT); }

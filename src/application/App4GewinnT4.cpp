@@ -85,6 +85,24 @@ void App4GewinnT4::gameCreate(playerLineUp_t line_up) {
 }
 
 /**
+ * \brief	Paint the game field.
+ */
+void App4GewinnT4::paintGameField(void) {
+	if (currentGame != NULL) {
+		//currentGame->drawField();
+	}
+}
+
+/**
+ * \brief	Paint the game field.
+ */
+void App4GewinnT4::paintGameResult(void) {
+	if (currentGame != NULL) {
+		currentGame->drawResultScreen();
+	}
+}
+
+/**
  * \brief	Destroys an game.
  */
 void App4GewinnT4::gameDestroy(void) {

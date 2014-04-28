@@ -19,6 +19,8 @@
 
 #include "Player.hpp"
 
+#include "lcd.h"
+
 /**
  * \brief	Constructor.
  */
@@ -169,6 +171,13 @@ void StateGame::timerEvent(void) {
  * \brief	The whole LCD Screen must be repainted.
  */
 void StateGame::paintFullScreen(void) {
+	/* Clear screen */
+	LCD_DrawRectF(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, GUI_COLOR_BLACK);
+
+	/* Title */
+	LCD_DisplayStringXY(10, 10, "4 GewinnT4");
+
+	/* Game Field */
 
 }
 

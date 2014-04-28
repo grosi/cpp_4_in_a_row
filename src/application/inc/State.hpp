@@ -18,6 +18,9 @@
 
 #include "App4GewinnT4.hpp"
 
+#define DISPLAY_WIDTH		100
+#define DISPLAY_HEIGHT		100
+
 /**
  * \class	State
  * \brief	This is the interface of all states used in the application.

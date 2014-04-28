@@ -21,6 +21,8 @@
 #include "Game.hpp"
 #include "Player.hpp"
 
+#include "lcd.h"
+
 /**
  * \brief	Constructor of the menu state.
  */
@@ -179,10 +181,58 @@ void StateMenu::paintFullScreen(void) {
 	obj_communication = Communication::getInstance();
 
 	/* Clear screen */
+	LCD_DrawRectF(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT, GUI_COLOR_BLACK);
 
 	/* Title */
+	LCD_DisplayStringXY(10, 10, "4 GewinnT4");
 
-	/* Menu points */
+	// Vielleicht doch besser eine Abstraktion mehr????
+
+	/* Menu point: remote game */
+	if (obj_hardware->getPortValue() < 4) {
+		/* Active */
+		//-------
+		LCD_DrawRectF(60, 60, 60, 20, GUI_COLOR_DARK_GREY);
+		LCD_DrawRect(60, 60, DISPLAY_WIDTH, DISPLAY_HEIGHT, GUI_COLOR_CYAN);
+		if (obj_communication->getStateGame()) {
+			LCD_DisplayStringXY(60, 60, "Request Remote Game");
+		}
+		else {
+			LCD_DisplayStringXY(60, 60, "Start Remote Game");
+		}
+		//-----
+	}
+	else {
+		/* Not active */
+		//-------
+		LCD_DrawRectF(60, 60, 60, 20, GUI_COLOR_DARK_GREY);
+		LCD_DrawRect(60, 60, DISPLAY_WIDTH, DISPLAY_HEIGHT, GUI_COLOR_CYAN);
+		if (obj_communication->getStateGame()) {
+			LCD_DisplayStringXY(60, 60, "Request Remote Game");
+		}
+		else {
+			LCD_DisplayStringXY(60, 60, "Start Remote Game");
+		}
+		//-----
+	}
+
+	/* Menu point: single game */
+	if (obj_hardware->getPortValue() >= 4) {
+		/* Active */
+		//-------
+		LCD_DrawRectF(60, 60, 60, 20, GUI_COLOR_DARK_GREY);
+		LCD_DrawRect(60, 60, DISPLAY_WIDTH, DISPLAY_HEIGHT, GUI_COLOR_CYAN);
+		LCD_DisplayStringXY(60, 60, "Start Single Game");
+		//-----
+	}
+	else {
+		/* Not active */
+		//-------
+		LCD_DrawRectF(60, 60, 60, 20, GUI_COLOR_DARK_GREY);
+		LCD_DrawRect(60, 60, DISPLAY_WIDTH, DISPLAY_HEIGHT, GUI_COLOR_CYAN);
+		LCD_DisplayStringXY(60, 60, "Start Single Game");
+		//-----
+	}
 }
 
 /**
