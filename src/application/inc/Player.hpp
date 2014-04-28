@@ -12,6 +12,8 @@
 #define PLAYER_HPP_
 
 #include <iostream>
+#include "Game.hpp"
+//class Game;
 
 
 
@@ -19,14 +21,15 @@ class Player {
 protected:
 	std::string name;
 	int gamesWinnerCtr;
+	Game* current_game;
 
 public:
-	Player();
+	Player(Game*);
 	virtual ~Player();
 
 	void eventHwBtnEnt();
 	void eventHwPot();
-	void eventCommStonePlace();
+	uint8_t eventCommStonePlace(uint8_t);
 	void eventTimer();
 	virtual void drawStone();
 

@@ -13,12 +13,16 @@
 
 #include "Player.hpp"
 
-class Remote : Player {
+class Game;
+
+//class Player;
+
+class Remote : public Player {
 public:
-	Remote();
+	Remote(Game*);
 	virtual ~Remote();
 
-	void eventCommStonePlace();
+	uint8_t eventCommStonePlace(uint8_t);
 };
 
 #endif /* REMOTE_HPP_ */

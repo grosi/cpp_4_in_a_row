@@ -9,9 +9,11 @@
  * @{
  */
 
-#include "inc/Remote.hpp"
+#include "Player.hpp"
+#include "Remote.hpp"
+#include "Game.hpp"
 
-Remote::Remote() {
+Remote::Remote(Game* game): Player(game){
 	// TODO Auto-generated constructor stub
 
 }
@@ -21,8 +23,10 @@ Remote::~Remote() {
 }
 
 
-void Remote::eventCommStonePlace() {
+uint8_t Remote::eventCommStonePlace(uint8_t column) {
+	current_game->stonePlace(column);
 
+	return current_game->field->checkWinner();
 }
 
 /**

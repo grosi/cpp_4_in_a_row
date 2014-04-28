@@ -11,20 +11,24 @@
 #ifndef SELF_HPP_
 #define SELF_HPP_
 
+class Game;
+
 #include "Player.hpp"
 
 
-class Self : Player {
+class Self : public Player {
 private:
 	int cursorPosition;
 
 public:
-	Self();
+	Self(Game*);
 	virtual ~Self();
 
 	void evenHwBtnEnt();
 	void eventHwPot();
+	int eventSelfStonePlace();
 	void drawStone();
+
 };
 
 #endif /* SELF_HPP_ */

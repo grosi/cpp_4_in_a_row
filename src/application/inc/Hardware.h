@@ -17,7 +17,7 @@ private:
 	uint8_t portValue;
 public:
 	static Hardware* getInstance(void);
-private:
+public:
 	uint8_t getPortValue(void);
 	void setLedState(uint8_t ledState);
 private:

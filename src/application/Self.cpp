@@ -9,10 +9,12 @@
  * @{
  */
 
-#include "inc/Self.hpp"
 
-Self::Self() {
-	// TODO Auto-generated constructor stub
+#include "Player.hpp"
+#include "Self.hpp"
+
+Self::Self(Game* game): Player(game) {
+
 
 }
 

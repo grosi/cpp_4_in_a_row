@@ -16,7 +16,7 @@ private:
 	bool stateGame;
 public:
 	static Communication* getInstance(void);
-private:
+public:
 	void commTxGameReq(void);
 	void commTxGameStart(void);
 	void commTxGamePlace(void);

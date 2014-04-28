@@ -81,7 +81,7 @@ void App4GewinnT4::nextState(State *next_state) {
  */
 void App4GewinnT4::gameCreate(playerLineUp_t line_up) {
 	/* Make a new game */
-	currentGame = new Game(line_up);
+	currentGame = new Game(this, line_up);
 }
 
 /**

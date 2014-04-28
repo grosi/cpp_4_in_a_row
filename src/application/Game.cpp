@@ -8,21 +8,49 @@
  * \brief       class for game controlling
  * @{
  */
-
+#include "Game.hpp"
 #include "Player.hpp"
-#include "inc/Game.hpp"
+#include "Self.hpp"
+#include "Remote.hpp"
+#include "Bot.hpp"
 
-Game::Game(App4GewinnT4 app, Player* player_1, Player* player_2) {
-	this->app = app;
-	this->player_1 = player_1;
-	this->player_2 = player_2;
-	current_player = &player_1;
+Game::Game(App4GewinnT4* app, playerLineUp_t line_up) {
+	Self test(this);
+	player1 = &test;
+	this->mainApp = app;
 
+	/* player setup */
+	switch(line_up)
+	{
+	case PLAYER_SELF_REMOTE:
+		player1 = new Self(this);
+		player2 = new Remote(this);
+		currentPlayer = &player1;
+		break;
+	case PLAYER_REMOTE_SELF:
+		player1 = new Remote(this);
+		player2 = new Self(this);
+		currentPlayer = &player1;
+		break;
+	case PLAYER_SELF_BOT:
+		player1 = new Self(this);
+		player2 = new Bot(this);
+		currentPlayer = &player1;
+		break;
+	case PLAYER_BOT_SELF:
+		player1 = new Bot(this);
+		player2 = new Self(this);
+		currentPlayer = &player1;
+		break;
+	default:
+		currentPlayer = NULL;
+	}
 }
 
 Game::~Game() {
 
-
+	delete player1;
+	delete player2;
 }
 
 /**
@@ -32,7 +60,7 @@ Game::~Game() {
  * \return 	reference to current player
  */
 Player* Game::getCurrentPlayer() {
-	return *current_player;
+	return *currentPlayer;
 }
 
 
@@ -42,6 +70,33 @@ Player* Game::getCurrentPlayer() {
  */
 void Game::newGameRound() {
 
+	if(field != NULL) {
+		delete field;
+	}
+
+	field = new GameField();
+
+	this->roundCtr++;
+}
+
+
+/**
+ * \fn		stonePlace
+ * \brief	set a stone to column
+ *
+ * \param[in]	column	column number (0-6)
+ */
+void Game::stonePlace(int column) {
+	field->stonePlace(column);
+}
+
+
+/**
+ * \fn		getCopyOfGameField
+ * \brief	returns a game-field clone
+ */
+GameField Game::getCopyOfGameField(void) {
+	return *field;
 }
 
 /**

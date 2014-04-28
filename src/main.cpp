@@ -26,10 +26,15 @@
 #include "stm32f4xx.h"
 #include "application/TestClass.hpp"
 
+#include "carme.h"
+#include "carme_io1.h"
+#include "lcd.h"
+
 /* Private macro */
 
 /* Private variables */
-
+static const char* pcHello = "Hello freeRTOS";         /* welcome text        */
+static const char* pcCounterText = "Task 1 cycle: ";   /* task 1 text         */
 
 /* Private function prototypes */
 
@@ -47,6 +52,8 @@ int main(void)
 {
   int i = 1;
 
+  char str[] = "Kevin kanns ;)";
+
   /**
   *  IMPORTANT NOTE!
   *  The symbol VECT_TAB_SRAM needs to be defined when building the project
@@ -57,9 +64,23 @@ int main(void)
   *  E.g.  SCB->VTOR = 0x20000000;  
   */
 
+  CARME_Init();
+	CARME_IO1_Init();
+	CARME_IO1_LED_Set(0x0F,0xFF);
+
+
+  LCD_Init();
+
+  /* Display welcome text */
+  LCD_DrawCircle(50,50,50,GUI_COLOR_BLUE);
+  LCD_SetFont(&font_8x16B);
+//  LCD_SetFont(&font_8x16);
+  LCD_DisplayStringXY(140, 100, pcCounterText);
+//  LCD_GetFont();
+
   /* TODO - Add your application code here */
 
-  TestClass test;
+  //TestClass test;
 
   /* Infinite loop */
   while (1)

@@ -9,9 +9,10 @@
  * @{
  */
 
-#include "inc/Bot.hpp"
+#include "Player.hpp"
+#include "Bot.hpp"
 
-Bot::Bot() {
+Bot::Bot(Game* game): Player(game) {
 	// TODO Auto-generated constructor stub
 
 }

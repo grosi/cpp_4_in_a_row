@@ -20,12 +20,12 @@ GameField::~GameField() {
 	// TODO Auto-generated destructor stub
 }
 
-void GameField::stonePlace() {
+void GameField::stonePlace(int column) {
 
 }
 
 
-void GameField::checkWinner() {
+uint8_t GameField::checkWinner() {
 
 }
 

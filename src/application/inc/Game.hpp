@@ -11,6 +11,12 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
+#include "GameField.hpp"
+
+class App4GewinnT4;
+class Player;
+class Stone;
+
 /**
  * \typedef	playerLineUp_t
  * \brief	All possible player line ups. It starts with the first player and ends with the second.
@@ -24,26 +30,26 @@ typedef enum {
 
 class Game {
 private:
-	App4GewinnT4 app;
+	App4GewinnT4* mainApp;
 
-	Player** current_player;
-	Player* player_1;
-	Player* player_2;
+	Player** currentPlayer;
+	Player* player1;
+	Player* player2;
 	int roundCtr;
 
+
 public:
-	Game(playerLineUp_t line_up);
+	GameField* field;
+
+	Game(App4GewinnT4* app, playerLineUp_t line_up);
 	virtual ~Game();
 
 	Player* getCurrentPlayer(void);
-	void stonePlace(int, int);
+	void stonePlace(int column);
 	void newGameRound(void);
 	GameField getCopyOfGameField(void);
 	void drawCursor(int);
 	void drawResultScreen(Player**, Stone winner_row[4]);
-
-
-
 
 };
 

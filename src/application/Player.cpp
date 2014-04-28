@@ -11,13 +11,18 @@
 
 #include "inc/Player.hpp"
 
-Player::Player() {
+Player::Player(Game* game): current_game(game) {
 	// TODO Auto-generated constructor stub
 
 }
 
 Player::~Player() {
 	// TODO Auto-generated destructor stub
+}
+
+
+uint8_t Player::eventCommStonePlace(uint8_t column) {
+	return 0;
 }
 
 /**

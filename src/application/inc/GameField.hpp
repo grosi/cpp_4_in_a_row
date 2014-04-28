@@ -11,6 +11,8 @@
 #ifndef GAMEFIELD_HPP_
 #define GAMEFIELD_HPP_
 
+#include <stdint.h>
+
 class GameField {
 private:
 	int placedStones;
@@ -19,8 +21,8 @@ public:
 	GameField();
 	virtual ~GameField();
 
-	void stonePlace();
-	void checkWinner();
+	void stonePlace(int);
+	uint8_t checkWinner();
 	void clone();
 	void drawGameField();
 };

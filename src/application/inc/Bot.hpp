@@ -13,12 +13,12 @@
 
 #include "Player.hpp"
 
-class Bot : Player {
+class Bot : public Player {
 private:
 	int timerCtr;
 
 public:
-	Bot();
+	Bot(Game*);
 	virtual ~Bot();
 
 	void eventTimer();
